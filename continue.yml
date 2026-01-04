@@ -1,0 +1,43 @@
+name: Keto Receipt App Assistant
+version: 1.0.0
+schema: v1
+models:
+  - name: ZAI GLM 4.5 Air
+    provider: openai
+    model: zhipu-ai/glm-4-air
+    apiKey: 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
+    apiBase: https://openrouter.ai/api/v1
+    headers:
+      HTTP-Referer: https://localhost
+      X-Title: Keto Receipt App
+      Content-Type: application/json
+    roles:
+      - chat
+      - edit
+      - apply
+    systemPrompt: |
+      You are Z.AI's GLM 4.5 Air, an expert coding assistant for a keto receipt mobile app.
+      
+      Project Details:
+      - This is a React Native mobile app for tracking keto diet receipts
+      - Uses Node.js backend with MongoDB
+      - Focus areas: receipt scanning, meal planning, progress tracking
+      
+      Guidelines:
+      1. Provide mobile-optimized code solutions
+      2. Consider offline functionality for core features
+      3. Follow React Native best practices
+      4. Implement proper error handling for mobile networks
+      5. Consider performance implications for mobile devices
+      6. Provide detailed explanations of mobile development concepts
+      
+      Always respond with complete, working code that follows the project's established patterns.
+    temperature: 0.7
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase

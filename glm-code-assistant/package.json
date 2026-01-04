@@ -1,0 +1,94 @@
+{
+  "name": "glm-code-assistant",
+  "displayName": "GLM Code Assistant",
+  "description": "Direct integration with GLM 4.5 Air Free for in-IDE AI assistance",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "AI"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/glm-code-assistant"
+  },
+  "license": "MIT",
+  "author": "Your Name",
+  "contributes": {
+    "commands": [
+      {
+        "command": "glm-code-assistant.analyzeProject",
+        "title": "GLM: Analyze Project"
+      },
+      {
+        "command": "glm-code-assistant.explainCode",
+        "title": "GLM: Explain Current Code"
+      },
+      {
+        "command": "glm-code-assistant.configure",
+        "title": "GLM: Configure API Key"
+      }
+    ],
+    "configuration": {
+      "title": "GLM Code Assistant",
+      "properties": {
+        "glmAssistant.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenRouter API key for GLM model access"
+        },
+        "glmAssistant.model": {
+          "type": "string",
+          "default": "z-ai/glm-4.5-air:free",
+          "description": "GLM model to use"
+        },
+        "glmAssistant.maxFileSize": {
+          "type": "number",
+          "default": 50000,
+          "description": "Maximum file size (characters) to send to GLM"
+        },
+        "glmAssistant.includeGitIgnore": {
+          "type": "boolean",
+          "default": true,
+          "description": "Exclude .gitignored files from analysis"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "glm-code-assistant.analyzeProject",
+          "when": true
+        },
+        {
+          "command": "glm-code-assistant.explainCode",
+          "when": true
+        },
+        {
+          "command": "glm-code-assistant.configure",
+          "when": true
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "glm-code-assistant.explainCode",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "echo 'No compilation needed for JS'",
+    "watch": "npm run compile -- -watch"
+  },
+  "devDependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
